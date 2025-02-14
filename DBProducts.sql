@@ -33,3 +33,18 @@ GO
 -- Corregir el índice en IdCategory (antes CategoryProduct, que no existe)
 CREATE INDEX IX_Products_Category ON Products(IdCategory);
 GO
+
+-- Insert Categories
+INSERT INTO Categories (NameCategory) VALUES ('Electrónica');
+INSERT INTO Categories (NameCategory) VALUES ('Hogar');
+INSERT INTO Categories (NameCategory) VALUES ('Ropa');
+INSERT INTO Categories (NameCategory) VALUES ('Deportes');
+INSERT INTO Categories (NameCategory) VALUES ('Automotriz');
+GO
+
+-- Insert Categories
+INSERT INTO Products (NameProduct, DescriptionProduct, IdCategory)  
+VALUES ('Laptop Gamer', 'Laptop con procesador Intel i7, 16GB RAM y SSD de 512GB', 1);  
+INSERT INTO Products (NameProduct, DescriptionProduct, IdCategory)  
+VALUES ('Bicicleta de montaña', 'Bicicleta todo terreno con suspensión delantera', 4);
+GO  
