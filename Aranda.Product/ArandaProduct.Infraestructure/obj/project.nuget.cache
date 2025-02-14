@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "CXyZFiA4rwk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gr85l\\Downloads\\Aranda-20250214T105320Z-001\\Aranda\\Back\\Aranda.Product\\ArandaProduct.Infraestructure\\ArandaProduct.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gr85l\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\gr85l\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\gr85l\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

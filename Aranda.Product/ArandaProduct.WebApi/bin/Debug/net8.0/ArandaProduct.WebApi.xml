@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ArandaProduct.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:ArandaProduct.WebApi.Controllers.CategoryController.CreateCategory(ArandaProduct.Domain.Dto.CreateCategoryDto)">
+            <summary>
+            Crea una nueva categoría.
+            </summary>
+            <param name="createCategoryDto">Datos de la categoría a crear.</param>
+            <returns>
+            Devuelve un código de estado 201 (Created) con la categoría creada,
+            o un código 500 (Internal Server Error) en caso de error inesperado.
+            </returns>
+            <response code="201">Categoría creada exitosamente.</response>
+            <response code="500">Error interno al crear la categoría.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.CategoryController.GetAllCategories">
+            <summary>
+            Obtiene todas las categorías disponibles.
+            </summary>
+            <returns>
+            Devuelve una lista de categorías.
+            </returns>
+            <response code="200">Lista de categorías obtenida correctamente.</response>
+            <response code="500">Error interno al obtener las categorías.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.CategoryController.GetCategoryById(System.Int32)">
+            <summary>
+            Obtiene una categoría por su identificador único.
+            </summary>
+            <param name="id">El identificador de la categoría a obtener.</param>
+            <returns>Devuelve la categoría si se encuentra.</returns>
+            <response code="200">Categoría encontrada y devuelta correctamente.</response>
+            <response code="404">No se encontró la categoría con el ID especificado.</response>
+            <response code="500">Error interno al obtener la categoría.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.CategoryController.DeleteCategory(System.Int32)">
+            <summary>
+            Elimina una categoría por su identificador único.
+            </summary>
+            <param name="id">El identificador de la categoría a eliminar.</param>
+            <returns>Devuelve un mensaje indicando el resultado de la operación.</returns>
+            <response code="200">La categoría fue eliminada exitosamente.</response>
+            <response code="404">No se encontró la categoría con el ID especificado.</response>
+            <response code="500">No se pudo eliminar la categoría debido a un error interno.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.ProductController.CreateProduct(ArandaProduct.Domain.Dto.CreateProductDto)">
+            <summary>
+            Crea un nuevo producto en el sistema.
+            </summary>
+            <param name="createProductDto">Objeto que contiene los datos del producto a crear.</param>
+            <returns>
+            Devuelve un código de estado 201 (Created) con el producto creado, 
+            un código 400 (Bad Request) si los datos son inválidos, 
+            o un código 500 (Internal Server Error) si ocurre un error inesperado.
+            </returns>
+            <response code="201">Producto creado exitosamente.</response>
+            <response code="400">Error de validación en los datos de entrada.</response>
+            <response code="500">Error interno al procesar la solicitud.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.ProductController.UpdateProduct(System.Int32,ArandaProduct.Domain.Dto.UpdateProductDto)">
+            <summary>
+            Actualiza un producto existente en el sistema.
+            </summary>
+            <param name="id">ID del producto a actualizar.</param>
+            <param name="updateProductDto">Objeto con los datos a modificar del producto.</param>
+            <returns>
+            Devuelve un código de estado 200 (OK) si la actualización es exitosa, 
+            un código 400 (Bad Request) si los datos son inválidos, 
+            un código 404 (Not Found) si el producto no existe, 
+            o un código 500 (Internal Server Error) en caso de error inesperado.
+            </returns>
+            <response code="200">Producto actualizado correctamente.</response>
+            <response code="400">Error de validación en los datos de entrada.</response>
+            <response code="404">El producto no fue encontrado.</response>
+            <response code="500">Error interno al procesar la solicitud.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.ProductController.DeleteProduct(System.Int32)">
+            <summary>
+            Elimina un producto del sistema.
+            </summary>
+            <param name="id">ID del producto a eliminar.</param>
+            <returns>
+            Devuelve un código de estado 200 (OK) si la eliminación es exitosa, 
+            un código 400 (Bad Request) si el ID no es válido, 
+            un código 404 (Not Found) si el producto no existe, 
+            o un código 500 (Internal Server Error) en caso de error inesperado.
+            </returns>
+            <response code="200">Producto eliminado correctamente.</response>
+            <response code="400">El ID proporcionado no es válido.</response>
+            <response code="404">El producto no fue encontrado.</response>
+            <response code="500">Error interno al procesar la solicitud.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.ProductController.GetAllProducts(System.String,System.String,System.Nullable{System.Int32},System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Obtiene una lista de productos con opciones de filtrado, ordenamiento y paginación.
+            </summary>
+            <param name="nameFilter">Filtro opcional por nombre del producto.</param>
+            <param name="descriptionFilter">Filtro opcional por descripción del producto.</param>
+            <param name="IdCategory">Filtro opcional por categoría del producto.</param>
+            <param name="sortBy">Campo por el cual ordenar los productos (ejemplo: "NameProduct", "IdCategory").</param>
+            <param name="ascending">Determina si el ordenamiento es ascendente (true) o descendente (false).</param>
+            <param name="page">Número de página para la paginación (por defecto 1).</param>
+            <param name="pageSize">Cantidad de productos por página (por defecto 10).</param>
+            <returns>
+            Devuelve un código de estado 200 (OK) con la lista de productos encontrados,
+            o un código 500 (Internal Server Error) en caso de error inesperado.
+            </returns>
+            <response code="200">Lista de productos obtenida exitosamente.</response>
+            <response code="500">Error interno al obtener los productos.</response>
+        </member>
+        <member name="M:ArandaProduct.WebApi.Controllers.ProductController.GetProductByID(System.Int32)">
+            <summary>
+            Obtiene un producto por su ID.
+            </summary>
+            <param name="id">ID del producto a obtener.</param>
+            <returns>
+            Devuelve un código de estado 200 (OK) con los detalles del producto si se encuentra,
+            un código 404 (Not Found) si el producto no existe,
+            o un código 500 (Internal Server Error) en caso de error inesperado.
+            </returns>
+            <response code="200">Producto encontrado y retornado exitosamente.</response>
+            <response code="404">Producto no encontrado.</response>
+            <response code="500">Error interno al obtener el producto.</response>
+        </member>
+    </members>
+</doc>

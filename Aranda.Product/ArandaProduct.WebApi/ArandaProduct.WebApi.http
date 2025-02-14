@@ -1,0 +1,6 @@
+@ArandaProduct.WebApi_HostAddress = http://localhost:5168
+
+GET {{ArandaProduct.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

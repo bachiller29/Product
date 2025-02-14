@@ -1,0 +1,590 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ArandaProduct.WebApi",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Category/CreateCategory": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Crea una nueva categoría.",
+        "requestBody": {
+          "description": "Datos de la categoría a crear.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCategoryDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCategoryDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCategoryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Categoría creada exitosamente."
+          },
+          "500": {
+            "description": "Error interno al crear la categoría."
+          }
+        }
+      }
+    },
+    "/api/Category/GetAllCategories": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Obtiene todas las categorías disponibles.",
+        "responses": {
+          "200": {
+            "description": "Lista de categorías obtenida correctamente.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryDto"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno al obtener las categorías."
+          }
+        }
+      }
+    },
+    "/api/Category/GetCategoryById/{id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Obtiene una categoría por su identificador único.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "El identificador de la categoría a obtener.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Categoría encontrada y devuelta correctamente.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No se encontró la categoría con el ID especificado."
+          },
+          "500": {
+            "description": "Error interno al obtener la categoría."
+          }
+        }
+      }
+    },
+    "/api/Category/DeleteCategory/{id}": {
+      "delete": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Elimina una categoría por su identificador único.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "El identificador de la categoría a eliminar.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La categoría fue eliminada exitosamente."
+          },
+          "404": {
+            "description": "No se encontró la categoría con el ID especificado."
+          },
+          "500": {
+            "description": "No se pudo eliminar la categoría debido a un error interno."
+          }
+        }
+      }
+    },
+    "/api/Product/CreateProduct": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Crea un nuevo producto en el sistema.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "IdCategory",
+                  "NameProduct"
+                ],
+                "type": "object",
+                "properties": {
+                  "NameProduct": {
+                    "maxLength": 100,
+                    "type": "string"
+                  },
+                  "DescriptionProduct": {
+                    "maxLength": 500,
+                    "type": "string"
+                  },
+                  "IdCategory": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ImageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "NameProduct": {
+                  "style": "form"
+                },
+                "DescriptionProduct": {
+                  "style": "form"
+                },
+                "IdCategory": {
+                  "style": "form"
+                },
+                "ImageFile": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Producto creado exitosamente."
+          },
+          "400": {
+            "description": "Error de validación en los datos de entrada."
+          },
+          "500": {
+            "description": "Error interno al procesar la solicitud."
+          }
+        }
+      }
+    },
+    "/api/Product/UpdateProduct/{id}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Actualiza un producto existente en el sistema.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del producto a actualizar.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "NameProduct": {
+                    "type": "string"
+                  },
+                  "DescriptionProduct": {
+                    "type": "string"
+                  },
+                  "IdCategory": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ImageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "NameProduct": {
+                  "style": "form"
+                },
+                "DescriptionProduct": {
+                  "style": "form"
+                },
+                "IdCategory": {
+                  "style": "form"
+                },
+                "ImageFile": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Producto actualizado correctamente."
+          },
+          "400": {
+            "description": "Error de validación en los datos de entrada."
+          },
+          "404": {
+            "description": "El producto no fue encontrado."
+          },
+          "500": {
+            "description": "Error interno al procesar la solicitud."
+          }
+        }
+      }
+    },
+    "/api/Product/DeleteProduct/{id}": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Elimina un producto del sistema.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del producto a eliminar.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Producto eliminado correctamente."
+          },
+          "400": {
+            "description": "El ID proporcionado no es válido."
+          },
+          "404": {
+            "description": "El producto no fue encontrado."
+          },
+          "500": {
+            "description": "Error interno al procesar la solicitud."
+          }
+        }
+      }
+    },
+    "/api/Product/GetAllProducts": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Obtiene una lista de productos con opciones de filtrado, ordenamiento y paginación.",
+        "parameters": [
+          {
+            "name": "nameFilter",
+            "in": "query",
+            "description": "Filtro opcional por nombre del producto.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descriptionFilter",
+            "in": "query",
+            "description": "Filtro opcional por descripción del producto.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IdCategory",
+            "in": "query",
+            "description": "Filtro opcional por categoría del producto.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Campo por el cual ordenar los productos (ejemplo: \"NameProduct\", \"IdCategory\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ascending",
+            "in": "query",
+            "description": "Determina si el ordenamiento es ascendente (true) o descendente (false).",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Número de página para la paginación (por defecto 1).",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Cantidad de productos por página (por defecto 10).",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de productos obtenida exitosamente.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDto"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno al obtener los productos."
+          }
+        }
+      }
+    },
+    "/api/Product/GetProductByID/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Obtiene un producto por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del producto a obtener.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Producto encontrado y retornado exitosamente.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Producto no encontrado."
+          },
+          "500": {
+            "description": "Error interno al obtener el producto."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CategoryDto": {
+        "type": "object",
+        "properties": {
+          "idCategory": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nameCategory": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateCategoryDto": {
+        "type": "object",
+        "properties": {
+          "nameCategory": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductDto": {
+        "type": "object",
+        "properties": {
+          "idProduct": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nameProduct": {
+            "type": "string",
+            "nullable": true
+          },
+          "descriptionProduct": {
+            "type": "string",
+            "nullable": true
+          },
+          "idCategory": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageProduct": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
